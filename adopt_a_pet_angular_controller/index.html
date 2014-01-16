@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html x-ng-app>
+  <head>
+    <title>Adopt-a-Pet Gallery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.min.js"></script>
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="main">
+      <h2>Adopt-a-Pet Gallery</h2>
+      <div ng-controller="PetCtrl" class="inner">
+        <span>{{remaining()}} of {{pets.length}} remaining</span>
+        <span>[ <a href="" ng-click="adopt()">clear adopted</a> ]</span>
+        <ul>
+          <li ng-repeat="pet in pets track by $index">
+            <input type="checkbox" ng-model="pet.adopted" ng-click="adoptedClass='adopted-true'">
+            <span ng-class="adoptedClass">{{pet.name}}</span>
+            <img ng-class="adoptedClass" src="{{pet.url}}" />
+          </li>
+        </ul>
+        <form ng-submit="addPet()">
+          <input type="name" ng-model="petName"  size="30"
+                 placeholder="add new pet here" />
+          <input type="text" ng-model="petURL"  size="30"
+                 placeholder="enter image path here" />
+          <input class="btn-primary" type="submit" value="add">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
